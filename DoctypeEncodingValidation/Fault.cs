@@ -9,27 +9,29 @@ namespace DoctypeEncodingValidation
     /// Class with all the properties needed to represent a Fault according to the xml returned by the W3C
     /// </summary>
     /// <remarks>
-    /// Author: María Eugenia Fernández Menéndez
-    /// E-mail: mariae.fernandez.menendez@gmail.com
-    /// Date created: 08-04-2009
-    /// Last modified: 02-05-2009
-    /// Version: 0.1
+    /// This file is part of CSharpValidatorClient, originally released by 
+    /// María Eugenia Fernández Menéndez as DoctypeEncodingValidation
+    ///
+    /// Obviously, she deserves all the credit for that work, but can not 
+    /// be blamed for the later modifications, which are documented at 
+    /// https://github.com/DominicCronin/CSharpValidatorClient
+    ///
     /// License:
     /// 
-    ///     This file is part of DoctypeEncodingValidation.
+    ///     This file is part of CSharpValidatorClient
     ///     
-    ///     DoctypeEncodingValidation is free software: you can redistribute
+    ///     CSharpValidatorClient is free software: you can redistribute
     ///     it and/or modify it under the terms of the GNU General Public 
     ///     License as published by the Free Software Foundation, either 
     ///     version 3 of the License, or (at your option) any later version.
     ///     
-    ///     DoctypeEncodingValidation is distributed in the hope that it 
+    ///     CSharpValidatorClient is distributed in the hope that it 
     ///     will be useful, but WITHOUT ANY WARRANTY; without even the 
     ///     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
     ///     PURPOSE. See the GNU General Public License for more details.
     ///  
     ///     You should have received a copy of the GNU General Public License
-    ///     along with DoctypeEncodingValidation. If not, see <http://www.gnu.org/licenses/>.
+    ///     along with CSharpValidatorClient. If not, see <http://www.gnu.org/licenses/>.
     ///     
     /// </remarks>
     class Fault

@@ -10,27 +10,29 @@ namespace DoctypeEncodingValidation
     /// Class to validate an url against a doctype, an encoding, none of them (only validate the url) or both.
     /// </summary>
     /// <remarks>
-    /// Author: María Eugenia Fernández Menéndez
-    /// E-mail: mariae.fernandez.menendez@gmail.com
-    /// Date created: 08-04-2009
-    /// Last modified: 02-05-2009
-    /// Version: 0.1
+    /// This file is part of CSharpValidatorClient, originally released by 
+    /// María Eugenia Fernández Menéndez as DoctypeEncodingValidation
+    ///
+    /// Obviously, she deserves all the credit for that work, but can not 
+    /// be blamed for the later modifications, which are documented at 
+    /// https://github.com/DominicCronin/CSharpValidatorClient
+    ///
     /// License:
     /// 
-    ///     This file is part of DoctypeEncodingValidation.
+    ///     This file is part of CSharpValidatorClient
     ///     
-    ///     DoctypeEncodingValidation is free software: you can redistribute
+    ///     CSharpValidatorClient is free software: you can redistribute
     ///     it and/or modify it under the terms of the GNU General Public 
     ///     License as published by the Free Software Foundation, either 
     ///     version 3 of the License, or (at your option) any later version.
     ///     
-    ///     DoctypeEncodingValidation is distributed in the hope that it 
+    ///     CSharpValidatorClient is distributed in the hope that it 
     ///     will be useful, but WITHOUT ANY WARRANTY; without even the 
     ///     implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
     ///     PURPOSE. See the GNU General Public License for more details.
     ///  
     ///     You should have received a copy of the GNU General Public License
-    ///     along with DoctypeEncodingValidation. If not, see <http://www.gnu.org/licenses/>.
+    ///     along with CSharpValidatorClient. If not, see <http://www.gnu.org/licenses/>.
     ///     
     /// </remarks>
     public class HTMLValidate
@@ -321,14 +323,32 @@ namespace DoctypeEncodingValidation
         /// Errors class instance
         /// </summary>
         private Errors errors;
+
+        public Errors Errors
+        {
+            get { return errors; }
+            set { errors = value; }
+        }
         /// <summary>
         /// Warnings class instance
         /// </summary>
         private Warnings warnings;
+
+        public Warnings Warnings
+        {
+            get { return warnings; }
+            set { warnings = value; }
+        }
         /// <summary>
         /// WarningPotentialIssues class instance
         /// </summary>
         private WarningPotentialIssues warningPotentialIssues;
+
+        public WarningPotentialIssues WarningPotentialIssues
+        {
+            get { return warningPotentialIssues; }
+            set { warningPotentialIssues = value; }
+        }
         /// <summary>
         /// Faults class instance
         /// </summary>
@@ -381,7 +401,7 @@ namespace DoctypeEncodingValidation
         public void ValidationOfURL()
         {
             //Create the url to validate de original url.
-            string url = "http://validator.w3.org/check?uri=" + this.URL + "&charset=utf-8&output=soap12";
+            string url = validationServerBase + "check?uri=" + this.URL + "&charset=utf-8&output=soap12";
 
             //Loading the XML document that obtain as response to the url.
             XDocument urlDocument = XDocument.Load(url);
@@ -428,13 +448,13 @@ namespace DoctypeEncodingValidation
                     if (!encoding.Equals(""))
                     {
                         //Create the url to validate the original url, with encoding.
-                        url = "http://validator.w3.org/check?uri=" + this.URL + "&charset=" + encoding + "&output=soap12";
+                        url = validationServerBase + "check?uri=" + this.URL + "&charset=" + encoding + "&output=soap12";
                     }
                     //If encoding is not specified
                     else
                     {
                         //Create the url to validate de original url.
-                        url = "http://validator.w3.org/check?uri=" + this.URL + "&output=soap12";
+                        url = validationServerBase + "check?uri=" + this.URL + "&output=soap12";
                     }
 
                     //Loading the XML document that obtain as response to the url.
@@ -496,13 +516,13 @@ namespace DoctypeEncodingValidation
                     if (!doctype.Equals(""))
                     {
                         //Create the url to validate the original url, with doctype.
-                        url = "http://validator.w3.org/check?uri=" + this.URL + "&doctype=" + doctype + "&output=soap12";
+                        url = validationServerBase + "check?uri=" + this.URL + "&doctype=" + doctype + "&output=soap12";
                     }
                     //If encoding is not specified
                     else
                     {
                         //Create the url to validate de original url.
-                        url = "http://validator.w3.org/check?uri=" + this.URL + "&output=soap12";
+                        url = validationServerBase + "check?uri=" + this.URL + "&output=soap12";
                     }
 
                     //Loading the XML document that obtain as response to the url.
@@ -534,7 +554,7 @@ namespace DoctypeEncodingValidation
         /// <param name="mNamespace">Namespace used to obtain some data such as line, colum, etc.</param>
         private void HTMLWarnings(XDocument urlDocument, XNamespace mNamespace)
         {
-            warnings = new Warnings();
+            Warnings = new Warnings();
 
             //Obtaining the descendants of the elements labeled "warnings". With this we obtain all the warnings
             var warningsElements = from e in urlDocument.Descendants(mNamespace + "warnings")
@@ -550,7 +570,7 @@ namespace DoctypeEncodingValidation
             foreach (var element in warningCountElement)
             {
                 //Store the value of the count
-                warnings.warningCount = element.Value;
+                Warnings.warningCount = element.Value;
 
                 //Iterate over the 'warningListElements' variable to obtain each error
                 foreach (var warningElement in warningListElements)
@@ -590,7 +610,7 @@ namespace DoctypeEncodingValidation
                                 //Store the message in the warningPotentialIssue object
                                 warningPotentialIssue.message = warningElement.Descendants(mNamespace + "message").First().Value;
                             ////Add the warningPotentialIssue to the list of warningPotentialIssues.
-                            warningPotentialIssues.Add(warningPotentialIssue);
+                            WarningPotentialIssues.Add(warningPotentialIssue);
                         }
                         //If the messageid not stars with a 'W'
                         else
@@ -603,7 +623,7 @@ namespace DoctypeEncodingValidation
                                 warning.message = warningElement.Descendants(mNamespace + "message").First().Value;
 
                             //Add the warning to the list of warnings
-                            warnings.Add(warning);
+                            Warnings.Add(warning);
                         }
                     }
                 }
@@ -619,7 +639,7 @@ namespace DoctypeEncodingValidation
         /// <returns>Boolean that will indicate if the document is or not valid html.</returns>
         private Boolean HTMLErrors(Boolean htmlValid, XDocument urlDocument, XNamespace mNamespace)
         {
-            errors = new Errors();
+            Errors = new Errors();
 
             //Obtaining the descendants of the elements labeled "errors". With this we obtain all the errors
             var errorsElements = from e in urlDocument.Descendants(mNamespace + "errors")
@@ -635,10 +655,10 @@ namespace DoctypeEncodingValidation
             foreach (var element in errorCountElement)
             {
                 //Store the value of the count
-                errors.errorsCount = element.Value;
+                Errors.errorsCount = element.Value;
 
                 //If the number of errors is greater than 0
-                if (int.Parse(errors.errorsCount) > 0)
+                if (int.Parse(Errors.errorsCount) > 0)
                     //The document is not a valid html document according to the doctype especified
                     htmlValid = false;
 
@@ -673,7 +693,7 @@ namespace DoctypeEncodingValidation
                         error.source = errorElement.Descendants(mNamespace + "source").First().Value;
 
                     //Add the error to the list of errors that are stored in the 'errors' variable.
-                    errors.Add(error);
+                    Errors.Add(error);
                 }
             }
             return htmlValid;
@@ -741,7 +761,7 @@ namespace DoctypeEncodingValidation
                 file.WriteLine("\n****** BEGIN " + this.URL.Substring(7) + "******\n");
 
                 //Iterate over the list of errors
-                foreach (Error error in errors)
+                foreach (Error error in Errors)
                 {
                     //Write each error on the file
                     file.WriteLine(error.ToString());
@@ -772,14 +792,14 @@ namespace DoctypeEncodingValidation
                 file.WriteLine("\n****** BEGIN " + this.URL.Substring(7) + "******\n");
 
                 //Iterate over the list of warningPotentialIssues
-                foreach (WarningPotentialIssue warning in warningPotentialIssues)
+                foreach (WarningPotentialIssue warning in WarningPotentialIssues)
                 {
                     //Write the warningPotentialIssue to the file
                     file.WriteLine(warning.ToString());
                 }
 
                 //Iterate over the list of warnings
-                foreach (Warning warning in warnings)
+                foreach (Warning warning in Warnings)
                 {
                     //Write the warning to the file
                     file.WriteLine(warning.ToString());
@@ -852,18 +872,18 @@ namespace DoctypeEncodingValidation
                 if (!htmlValidate.ValidationOfDoctype(HTMLValidate.XHTML_BASIC_10))
                 {
                     Console.WriteLine("This document is NOT a valid html document");
-                    foreach (Error element in htmlValidate.errors)
+                    foreach (Error element in htmlValidate.Errors)
                     {
                         Console.WriteLine(element.ToString());
                     }
                     htmlValidate.printErrorsToFile();
 
-                    foreach (WarningPotentialIssue warningPotentialIssue in htmlValidate.warningPotentialIssues)
+                    foreach (WarningPotentialIssue warningPotentialIssue in htmlValidate.WarningPotentialIssues)
                     {
                         Console.WriteLine(warningPotentialIssue.ToString());
                     }
 
-                    foreach (Warning warning in htmlValidate.warnings)
+                    foreach (Warning warning in htmlValidate.Warnings)
                     {
                         Console.WriteLine(warning.ToString());
                     }
@@ -876,6 +896,13 @@ namespace DoctypeEncodingValidation
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine(e.errorTimeStamp.ToString());
+            }
+        }
+
+        public string validationServerBase { 
+            get {
+                // return "http://validator.w3.org/";
+                return "http://192.168.1.69/w3c-validator/";
             }
         }
     }
