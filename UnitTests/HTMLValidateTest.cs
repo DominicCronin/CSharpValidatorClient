@@ -1,4 +1,4 @@
-﻿using DoctypeEncodingValidation;
+﻿using CSharpValidatorClient;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System;
@@ -140,7 +140,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidationOfURLTest()
         {
             //Instance of HTMLValidate class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
             //Iterate over the notFoundURLs list.
             foreach (string url in notFoundURLs)
             {
@@ -168,7 +168,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidateValidURLsTest()
         {
             //Instance of HTMLValidate class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
             //Iterate over the validURLs list
             foreach (string url in validURLs)
             {
@@ -191,7 +191,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidateInvalidURLsTest()
         {
             //Instance of HTMLValidate class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
             //Iterate over the invalidURLs list
             foreach (string url in invalidURLs)
             {
@@ -214,7 +214,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidationOfEncodingValidTest()
         {
             //Instance of HTMLValidate class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
 
             //Iterate over the validUTF8URLs list
             foreach (string url in validUTF8URLs)
@@ -238,7 +238,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidationOfEncodingInvalidTest()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
 
             //Iterate over the invalidUTF8URLs list
             foreach (string url in invalidUTF8URLs)
@@ -262,7 +262,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidationOfHTMLTestOverXHTMLBasic1_1ValidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
 
             //Iterate over the xhtml11ValidURLs list
             foreach (string url in xhtml11ValidURLs)
@@ -286,7 +286,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidationOfHTMLTestOverXHTMLBasic1_1InvalidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
 
             //Iterate over the xhtml11InvalidURLs list
             foreach (string url in xhtml11InvalidURLs)
@@ -310,7 +310,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidationOfHTMLTestOverXHTMLBasic1_0ValidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
 
             //Iterate over the xhtml10ValidURLs list
             foreach (string url in xhtml10ValidURLs)
@@ -334,7 +334,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidationOfHTMLTestOverXHTMLBasic1_0InvalidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
 
             //Iterate over the xhtml10InvalidURLs list
             foreach (string url in xhtml10InvalidURLs)
@@ -358,7 +358,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidationOfHTMLTestOverXHTMLMP1_2ValidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
 
             //Iterate over the xhtmlMP12ValidURLs list
             foreach (string url in xhtmlMP12ValidURLs)
@@ -382,7 +382,7 @@ namespace DoctypeEncodingValidateUnitTests
         public void ValidationOfHTMLTestOverXHTMLMP1_2InvalidURLs()
         {
             //Instance of HTMLUTF8Validation class.
-            DoctypeEncodingValidation.HTMLValidate htmlValidate;
+            CSharpValidatorClient.HTMLValidate htmlValidate;
 
             //Iterate over the xhtmlMP12InvalidURLs list
             foreach (string url in xhtmlMP12InvalidURLs)

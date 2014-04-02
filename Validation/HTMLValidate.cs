@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace DoctypeEncodingValidation
+namespace CSharpValidatorClient
 {
     /// <summary>
     /// Class to validate an url against a doctype, an encoding, none of them (only validate the url) or both.
@@ -369,13 +370,15 @@ namespace DoctypeEncodingValidation
         /// <summary>
         /// Constructor with parameters
         /// </summary>
-        public HTMLValidate(string url)
+        public HTMLValidate(string url) : this(url, "http://validator.w3.org/") { }
+        public HTMLValidate(string url, string validator)
         {
             errors = new Errors();
             warnings = new Warnings();
             warningPotentialIssues = new WarningPotentialIssues();
             faults = new Faults();
             this.URL = url;
+            this._validationServerBase = validator;
         }
         #endregion
 
@@ -899,11 +902,11 @@ namespace DoctypeEncodingValidation
             }
         }
 
-        public string validationServerBase { 
-            get {
-                // return "http://validator.w3.org/";
-                return "http://192.168.1.69/w3c-validator/";
-            }
+        private string _validationServerBase;
+        public string validationServerBase 
+        { 
+            get {return _validationServerBase;}
+            set {_validationServerBase = value;}
         }
     }
 }
